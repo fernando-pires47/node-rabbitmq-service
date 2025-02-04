@@ -24,9 +24,11 @@ export async function consume() {
     channel.consume(QUEUE_NAME, (msg) => {
       if (msg !== null) {
         setTimeout(() => {
-          console.log(`[✔️] Processed: ${msg}`);
+          console.log(`[✔️] Processed: ${JSON.stringify(msg)}`);
           channel.ack(msg); // Acknowledge message
         }, Number(CONSUMER_DELAY));
+      }else{
+        channel.nack(msg); // Unacknowledged message
       }
     });
   } catch (error) {
