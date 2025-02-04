@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "strictNullChecks": false,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "pretty": true,
+    "baseUrl": ".",
+    "removeComments": true,
+    "noImplicitAny": false,
+    "incremental": true,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "noLib": false,
+    "declaration": false,
+    "types": [
+			"node"
+    ],
+  },
+  "include": [
+    "src/**/*", 
+  ],
+"exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+]
+}

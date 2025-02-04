@@ -1,0 +1,16 @@
+FROM node:18.20.5 AS install
+WORKDIR /app
+
+COPY --chown=node:node package.json .npmrc ./
+RUN npm install
+
+FROM install as build
+COPY --chown=node:node . ./
+RUN npm run build
+ 
+# Aplication
+FROM node:18.20.5 as deploy
+WORKDIR /app
+COPY --from=build app/dist ./dist
+#COPY --from=build app/node_modules ./node_modules
+CMD node ./dist/index.js
