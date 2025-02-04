@@ -17,7 +17,7 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 ### Concepts implemented
 
 
-#### Consumer
+##### Consumer
 ---
 
 * AssertQueue - Create queue if not exist
@@ -26,18 +26,33 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 * Ack - Acknowledge message, remove message from queue
 * Nack - Unacknowledged message, come back message from queue to be consumed again.
 
-#### Producer
+##### Producer
 ---
 
 * Send message
 
-#### Environment
+##### Environment
 ---
 
 * Dotenv configuration
 
+## Variables to configure to test with default values
 
-### Run project
+ ```bash
+  RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+  RABBITMQ_PREFETCH=1
+  RABBITMQ_QUEUE=queue-teste
+
+  CONSUMER_DISABLE=false
+  CONSUMER_DELAY_MS=2000
+
+  PRODUCER_DISABLE=false
+  PRODUCER_MESSAGE_QTD=5
+  PRODUCER_MESSAGE=teste
+  PRODUCER_DELAY_MS=7000
+```
+
+## Run project
 
 To run locally:
 
