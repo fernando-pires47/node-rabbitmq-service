@@ -73,12 +73,6 @@ To run via docker in prod environment:
   npm run start:docker-prod
 ```
 
-To run via docker in prod environment:
-
- ```bash
-  npm run start:docker-prod
-```
-
 ## License
 
 This application is available under the
