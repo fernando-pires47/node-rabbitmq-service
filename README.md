@@ -17,23 +17,18 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 
 ### Concepts implemented
 
-
 ##### Consumer
----
 
-* AssertQueue - Create queue if not exist
-* Prefetch - Quantity message consume peer connection 
-* Consumer
-* Ack - Acknowledge message, remove message from queue
-* Nack - Unacknowledged message, come back message from queue to be consumed again.
+* `AssertQueue`: Create queue if not exist
+* `Prefetch`: Quantity message consume peer connection 
+* `Ack`: Acknowledge message, remove message from queue
+* `Nack`: Unacknowledged message, come back message from queue to be consumed again.
 
 ##### Producer
----
 
 * Send message
 
-##### Environment
----
+##### Environment properties
 
 * Dotenv configuration
 
