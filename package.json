@@ -1,6 +1,6 @@
 {
   "name": "rabbitmq-service",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Super simple RabbitMQ producer and consumer",
   "author": "Fernando Pires",
   "license": "ISC",

@@ -10,6 +10,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - custom_network
     healthcheck:
       test: ["CMD-SHELL", "rabbitmq-diagnostics ping"]
       interval: 10s
@@ -24,6 +26,12 @@ services:
       - .:/app
     ports:
       - "9229:9229"
+    networks:
+      - custom_network
     depends_on:
       rabbitmq:
         condition: service_healthy
+
+networks:
+  custom_network:
+    driver: bridge

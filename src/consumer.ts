@@ -1,11 +1,11 @@
 import * as amqp from 'amqplib';
 
-const RABBITMQ_URL = process.env.RABBITMQ_URL!; // Replace with your RabbitMQ server URL
-const QUEUE_NAME =  process.env.RABBITMQ_QUEUE!; // Name of the queue to consume from
-const PREFETCH = process.env.CONSUMER_PREFETCH!; // quantity message will consume peer connection.
-const CONSUMER_DELAY = process.env.CONSUMER_DELAY_MS!; // delay to consumer in milliseconds.
-
 export async function consume() {
+  const RABBITMQ_URL = process.env.RABBITMQ_URL!; // Replace with your RabbitMQ server URL
+  const QUEUE_NAME =  process.env.RABBITMQ_QUEUE!; // Name of the queue to consume from
+  const PREFETCH = process.env.CONSUMER_PREFETCH!; // quantity message will consume peer connection.
+  const CONSUMER_DELAY = process.env.CONSUMER_DELAY_MS!; // delay to consumer in milliseconds.
+
   try {
     console.log("** Starting consumer **");
     // Connect to RabbitMQ server
@@ -23,7 +23,7 @@ export async function consume() {
     channel.consume(QUEUE_NAME, (msg) => {
       if (msg !== null) {
         setTimeout(() => {
-          console.log(`[✔️] Processed: ${JSON.stringify(msg)}`);
+          console.log(`[✔️] Message Processed: ${JSON.stringify(msg)}`);
           channel.ack(msg); // Acknowledge message
         }, Number(CONSUMER_DELAY));
       }else{

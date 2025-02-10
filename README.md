@@ -82,6 +82,10 @@ To push the image to a image repository, access the file `pushDocker.js` and set
   npm run push:docker
 ```
 
+## Hands on
+
+![](https://github.com/fernando-pires47/node-rabbitmq-service/blob/main/images/log.png)
+
 ## License
 
 This application is available under the
