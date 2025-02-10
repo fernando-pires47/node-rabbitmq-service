@@ -5,7 +5,7 @@ services:
     image: rabbitmq:management
     container_name: rabbitmq
     ports:
-      - "8090:15672"
+      - "15672:15672"
       - "5672:5672"
     environment:
       RABBITMQ_DEFAULT_USER: admin

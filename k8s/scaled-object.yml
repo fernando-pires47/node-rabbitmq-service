@@ -1,0 +1,25 @@
+
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: app-consumer-scaledobject
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: app-consumer
+  minReplicaCount: 1  # Minimum number of replicas
+  maxReplicaCount: 7 # Maximum number of replicas
+  triggers:
+    - type: rabbitmq
+      metadata:
+        queueName: queue-teste
+        host: amqp://admin:admin@rabbitmq-service.default.svc.cluster.local:5672
+        queueLength: "20"
+      pollingInterval: "30"  # Override default polling interval (in seconds)
+      cooldownPeriod: "300"  # Override default cooldown period (in seconds)
+#    - type: cron
+#      metadata:
+#        timezone: "America/Sao_Paulo" # Optional, depends on your requirement
+#        start: 0 19 * * 1-5           # At 19:00 PM (Monday to Friday)
+#        end: 0 21 * * 1-5             # At 21:00 PM (Monday to Friday)
+#        desiredReplicas: "5"          # Desired replicas during this time

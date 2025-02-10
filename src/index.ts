@@ -3,7 +3,8 @@ import { produce } from './producer';
 import * as dotenv from 'dotenv';
 
 const result = dotenv.config({ path: '.env' });
-if (result.error) console.error(result.error);
+if (result.error) console.error('** .env undefined **');
+console.log(process.env)
 
 const CONSUMER_DISABLE = process.env.CONSUMER_DISABLE == 'true'; // Disable consumer
 const PRODUCER_DISABLE =  process.env.PRODUCER_DISABLE == 'true'; //Disable producer

@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-consumer
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app-consumer
+        image: eopires/node-rabbitmq-service:1.0.0
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "1000m"
+            memory: "256Mi"
+        env:
+          - name: CONSUMER_DISABLE
+            value: "false"
+          - name: CONSUMER_PREFETCH
+            value: "1" # 1 message consume
+          - name: CONSUMER_DELAY_MS
+            value: "5000" # each 5 seconds 
+
+          - name: PRODUCER_DISABLE
+            value: "true"
+
+          - name: RABBITMQ_URL
+            value: "amqp://admin:admin@rabbitmq-service.default.svc.cluster.local:5672"
+          - name: RABBITMQ_QUEUE
+            value: "queue-teste"
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-producer
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app-producer
+        image: eopires/node-rabbitmq-service:1.0.0
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "1000m"
+            memory: "256Mi"
+        env:
+          - name: CONSUMER_DISABLE
+            value: "true"
+
+          - name: PRODUCER_DISABLE
+            value: "false"
+          - name: PRODUCER_MESSAGE
+            value: "test"
+          - name: PRODUCER_MESSAGE_QTD
+            value: "5" # 5 message published
+          - name: PRODUCER_DELAY_MS
+            value: "5000" # each 5 seconds
+
+          - name: RABBITMQ_URL
+            value: "amqp://admin:admin@rabbitmq-service.default.svc.cluster.local:5672"
+          - name: RABBITMQ_QUEUE
+            value: "queue-teste"

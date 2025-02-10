@@ -1,16 +1,17 @@
-# RabbitMQ Publisher and Consumer Service
+# RabbitMQ publisher and consumer service
 This service is a super simple configurable RabbitMQ publisher and consumer, created to perform tests on this tool.
-
 
 ### Dependencies
 * Docker
 * Docker Compose
+* NPM
+* Node
 
-### Project Dependencies
+### Project dependencies
 * amqplib
 * dotenv
 
-### Project Dev Dependencies
+### Project DEV dependencies
 * nodemon
 * ts-node
 
@@ -36,46 +37,60 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 
 * Dotenv configuration
 
-## Variables to configure to test with default values
+## Variables configurable to test with default values
 
  ```bash
   RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
-  RABBITMQ_PREFETCH=1
   RABBITMQ_QUEUE=queue-teste
 
   CONSUMER_DISABLE=false
   CONSUMER_DELAY_MS=2000
+  CONSUMER_PREFETCH=1
 
   PRODUCER_DISABLE=false
-  PRODUCER_MESSAGE_QTD=5
   PRODUCER_MESSAGE=teste
-  PRODUCER_DELAY_MS=7000
+  PRODUCER_MESSAGE_QTD=5
+  PRODUCER_DELAY_MS=5000
 ```
 
 ## Run project
 
+First of all, install dependencies:
+
+```bash
+  npm install
+```
+
 To run locally:
 
- ```bash
+```bash
   npm run start:dev
 ```
 
 To run via docker in dev environment:
 
- ```bash
+```bash
   npm run start:docker
 ```
 
 To run via docker in prod environment:
 
- ```bash
+```bash
   npm run start:docker-prod
 ```
 
 To run via docker in prod environment:
 
- ```bash
+```bash
   npm run start:docker-prod
+```
+
+## Push image
+
+To push the image to a image repository, access the file `pushDocker.js` and set the property `dockerImage`. After, run the script:
+
+```bash
+  npm run push:docker
 ```
 
 ## License

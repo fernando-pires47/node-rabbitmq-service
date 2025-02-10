@@ -1,9 +1,8 @@
 import * as amqp from 'amqplib';
-require('dotenv').config();
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL!; // Replace with your RabbitMQ server URL
 const QUEUE_NAME =  process.env.RABBITMQ_QUEUE!; // Name of the queue to consume from
-const PREFETCH = process.env.RABBITMQ_PREFETCH!; // quantity message will consume peer connection.
+const PREFETCH = process.env.CONSUMER_PREFETCH!; // quantity message will consume peer connection.
 const CONSUMER_DELAY = process.env.CONSUMER_DELAY_MS!; // delay to consumer in milliseconds.
 
 export async function consume() {
