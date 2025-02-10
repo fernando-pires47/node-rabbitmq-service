@@ -5,7 +5,7 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 * Docker
 * Docker Compose
 * NPM
-* Node
+* Node(locally)
 
 ### Project dependencies
 * amqplib
@@ -71,12 +71,6 @@ To run via docker in dev environment:
 
 ```bash
   npm run start:docker
-```
-
-To run via docker in prod environment:
-
-```bash
-  npm run start:docker-prod
 ```
 
 To run via docker in prod environment:
