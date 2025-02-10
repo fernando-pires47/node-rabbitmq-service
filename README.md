@@ -5,6 +5,7 @@ This service is a super simple configurable RabbitMQ publisher and consumer, cre
 ### Dependencies
 * Docker
 * Docker Compose
+* Node(locally)
 
 ### Project Dependencies
 * amqplib
