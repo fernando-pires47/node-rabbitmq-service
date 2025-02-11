@@ -159,12 +159,12 @@ Let's break the Cron type, how you can provide in the KEDA ScaledObject configur
 to configure, necessary to access the `scaled-object.yml`.
 
 ```bash
-#    - type: cron
-#      metadata:
-#        timezone: "America/Sao_Paulo" # Optional, depends on your requirement
-#        start: 0 19 * * 1-5           # At 19:00 PM (Monday to Friday)
-#        end: 0 21 * * 1-5             # At 21:00 PM (Monday to Friday)
-#        desiredReplicas: "5"          # Desired replicas during this time
+- type: cron
+  metadata:
+    timezone: "America/Sao_Paulo" # Optional, depends on your requirement
+    start: 0 19 * * 1-5           # At 19:00 PM (Monday to Friday)
+    end: 0 21 * * 1-5             # At 21:00 PM (Monday to Friday)
+    desiredReplicas: "5"          # Desired replicas during this time
 ```
 
 #### Behavior 
