@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - custom_network
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  consumer-service:
+    deploy:
+        replicas: 3
+    build:
+      dockerfile: Dockerfile.prod
+    networks:
+      - custom_network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+      - RABBITMQ_QUEUE=queue-teste
+
+      - CONSUMER_DISABLE=false
+      - CONSUMER_PREFETCH=1
+      - CONSUMER_DELAY_MS=2000
+
+      - PRODUCER_DISABLE=true
+
+  producer-service:
+    deploy:
+        replicas: 1
+    build:
+      dockerfile: Dockerfile.prod
+    container_name: producer-service
+    networks:
+      - custom_network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+      - RABBITMQ_QUEUE=queue-teste
+      
+      - CONSUMER_DISABLE=true
+
+      - PRODUCER_DISABLE=false
+      - PRODUCER_MESSAGE=test
+      - PRODUCER_MESSAGE_QTD=20
+      - PRODUCER_DELAY_MS=5000
+
+networks:
+  custom_network:
+    driver: bridge
