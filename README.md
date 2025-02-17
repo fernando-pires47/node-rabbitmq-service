@@ -86,6 +86,11 @@ To push the image to a image repository, access the file `pushDocker.js` and set
 
 ![](https://github.com/fernando-pires47/node-rabbitmq-service/blob/main/images/log.png)
 
+## Implementation
+
+#### KEDA RabbitMQ Scale
+https://github.com/fernando-pires47/k8s-keda-rabbitmq-scale
+
 ## License
 
 This application is available under the
